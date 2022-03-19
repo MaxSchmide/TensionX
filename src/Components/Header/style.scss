@@ -1,0 +1,95 @@
+$grey: #777;
+$bg: #a6192e;
+
+header {
+  color: $grey;
+  font-family: "Rubik";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 140%;
+  position: static;
+  width: 1440px;
+  height: 93px;
+  left: 0px;
+  top: 0px;
+
+  .logo {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0px;
+    position: absolute;
+    width: 297px;
+    height: 32px;
+    left: 40px;
+    top: 14px;
+    img {
+      margin: 0px 20px;
+    }
+    select {
+      outline: none;
+      border: none;
+      color: #777;
+    }
+    select: {
+      border: none;
+    }
+  }
+  .categories {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 0px;
+
+    position: absolute;
+    width: 640px;
+    height: 32px;
+    top: 31px;
+    left: 400px;
+    .c {
+      margin-left: 16px;
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-end;
+      align-items: flex-start;
+      padding: 6px 12px;
+      cursor: pointer;
+      user-select: none;
+    }
+    :hover,
+    :active {
+      background-color: $bg;
+      color: white;
+    }
+  }
+  .user {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 0px;
+
+    position: absolute;
+    width: 60px;
+    height: 32px;
+    right: 40px;
+    top: 31px;
+    .photo {
+      border-radius: 100%;
+      position: static;
+      width: 32px;
+      height: 32px;
+      right: 28px;
+    }
+    .icon {
+      cursor: pointer;
+      position: static;
+      width: 24px;
+      height: 24px;
+      left: 36px;
+      top: 4px;
+    }
+  }
+}

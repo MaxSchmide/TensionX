@@ -1,0 +1,37 @@
+.filter {
+  font-family: "Rubik";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 140%;
+  color: #c0c0c0;
+  background-color: #5b5b5b;
+
+  position: static;
+  width: 1440px;
+  height: 40px;
+  left: 0px;
+  top: 93px;
+
+  .filtering {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 0px;
+    .item {
+      cursor: pointer;
+      user-select: none;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      padding: 6px 12px;
+      .cancel {
+        margin-right: 2px;
+      }
+    }
+    .clear {
+      font-weight: 700;
+    }
+  }
+}
