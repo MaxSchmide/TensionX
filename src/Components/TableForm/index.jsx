@@ -2,12 +2,14 @@
 import React, { useEffect, useState } from "react";
 import name from "../Images/sort_by_alpha.png";
 import sort from "../Images/sort_by_id.png";
-import vector from "../Images/user-vector.png";
+import arrow_down from "../Images/user-vector.png";
+import arrow_up from "../Images/arrow_up.png";
 import edit from "../Images/edit-icon.png";
 import promote from "../Images/promote-icon.png";
 import "./style.scss";
 import TablePagination from "@mui/material/TablePagination";
 import Archive from "./Archive";
+import Details from "./Details";
 
 export default function TableForm(props) {
   const [archivedBase, setArchivedBase] = useState([]);
@@ -19,6 +21,7 @@ export default function TableForm(props) {
   const [order, setOrder] = useState("ASC");
   const [checkedState, setCheckedState] = useState();
   const [isAllChecked, setIsAllChecked] = useState();
+  const [selectedState, setSelectedState] = useState();
 
   const selectAllStudents = () => {
     let toggle = isAllChecked.map((item) => (item = !item));
@@ -33,7 +36,12 @@ export default function TableForm(props) {
     setCheckedState(toggle);
     props.count(total);
   };
-
+  const handleDetailsView = (position) => {
+    const updatedSelectedState = selectedState.map((item, index) =>
+      index === position ? !item : item
+    );
+    setSelectedState(updatedSelectedState);
+  };
   const handleCheckboxOnChange = (position) => {
     const updatedCheckedState = checkedState.map((item, index) =>
       index === position ? !item : item
@@ -90,12 +98,14 @@ export default function TableForm(props) {
       .then((result) => {
         setStudentsBase(result.data);
         setArchivedBase(result.data.slice(0, 2));
-        setCheckedState(new Array(result.data.length).fill(false));
-        setIsAllChecked(new Array(result.data.length).fill(false));
         setIsLoaded(true);
       });
   }, []);
-
+  useEffect(() => {
+    setCheckedState(new Array(studentsBase.length).fill(false));
+    setSelectedState(new Array(studentsBase.length).fill(false));
+    setIsAllChecked(new Array(studentsBase.length).fill(false));
+  }, [studentsBase]);
   return (
     <section className="tableForm">
       <table className="table">
@@ -174,11 +184,16 @@ export default function TableForm(props) {
                           <img src={edit} alt="left" srcset="" />
                           <img src={promote} alt="middle" srcset="" />
                         </div>
-                        <div>
-                          <img src={vector} alt="vector" />
+                        <div onClick={() => handleDetailsView(index)}>
+                          {selectedState[index] ? (
+                            <img src={arrow_up} alt="vector" />
+                          ) : (
+                            <img src={arrow_down} alt="vector" />
+                          )}
                         </div>
                       </td>
                     </tr>
+                    {selectedState[index] && <Details data={item} />}
                   </>
                 );
               })}
