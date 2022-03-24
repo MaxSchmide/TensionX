@@ -7,6 +7,7 @@ import edit from "../Images/edit-icon.png";
 import promote from "../Images/promote-icon.png";
 import "./style.scss";
 import TablePagination from "@mui/material/TablePagination";
+import Archive from "./Archive";
 
 export default function TableForm(props) {
   const [archivedBase, setArchivedBase] = useState([]);
@@ -96,9 +97,9 @@ export default function TableForm(props) {
   }, []);
 
   return (
-    <section className="table">
-      <table>
-        <thead>
+    <section className="tableForm">
+      <table className="table">
+        <thead className="table-head">
           <tr>
             <td>
               <input type="checkbox" onClick={selectAllStudents} />
@@ -121,9 +122,10 @@ export default function TableForm(props) {
               <img src={sort} alt="" name="speed" onClick={sorting} />
             </td>
             <td className="parents">Parents</td>
+            <td className={`actions ${checkedState && `active`}`}>Actions</td>
           </tr>
         </thead>
-        <tbody>
+        <tbody className="table-body">
           {isLoaded &&
             studentsBase
               .filter((item) => {
@@ -165,15 +167,15 @@ export default function TableForm(props) {
                       <td className="parents">{item.parents.join(", ")}</td>
                       <td className="actions">
                         <div
-                          className={`selected-buttons ${
+                          className={`action-buttons ${
                             checkedState[index] && `active`
                           }`}
                         >
-                          <img src={edit} alt="" srcset="" />
-                          <img src={promote} alt="" srcset="" />
+                          <img src={edit} alt="left" srcset="" />
+                          <img src={promote} alt="middle" srcset="" />
                         </div>
                         <div>
-                          <img src={vector} alt="" />
+                          <img src={vector} alt="vector" />
                         </div>
                       </td>
                     </tr>
@@ -181,33 +183,11 @@ export default function TableForm(props) {
                 );
               })}
         </tbody>
-        <tr onClick={handleArchivedSectionView} className="archived-row">
-          <td>ARCHIVED</td>
-        </tr>
-        <tfoot className={archiveMenu && "active"}>
-          {isLoaded &&
-            archivedBase.map((item) => {
-              return (
-                <>
-                  <tr>
-                    <td>
-                      <input type="checkbox" />
-                    </td>
-                    <td className="name">{item.name}</td>
-                    <td className="id">{item.id}</td>
-                    <td className="class">{item.class}</td>
-                    <td className={`score  `}>{item.score}</td>
-                    <td className={`speed `}>{item.speed}</td>
-                    <td className="parents">{item.parents.join(", ")}</td>
-                    <td className="actions">
-                      <div>
-                        <img src={vector} alt="" />
-                      </div>
-                    </td>
-                  </tr>
-                </>
-              );
-            })}
+        <span onClick={handleArchivedSectionView} className="archived-row">
+          ARCHIVED
+        </span>
+        <tfoot className={`table-foot ${archiveMenu && "active"}`}>
+          {isLoaded && <Archive base={archivedBase} />}
         </tfoot>
       </table>
       <footer>
