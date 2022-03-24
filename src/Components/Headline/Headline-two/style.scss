@@ -1,0 +1,64 @@
+.headline-two {
+  position: relative;
+  width: 1440px;
+  height: 48px;
+  background-color: #c0c0c0;
+  display: flex;
+  justify-content: space-between;
+  .head {
+    margin: 0;
+    position: relative;
+    left: 40px;
+    top: 14px;
+    font-family: "Rubik";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 140%;
+    color: #ffffff;
+  }
+  .buttons {
+    cursor: pointer;
+    user-select: none;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+    position: relative;
+    right: 40px;
+    .box {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      margin-left: 15px;
+      h1 {
+        font-family: "Rubik";
+        font-style: normal;
+        font-weight: 700;
+        font-size: 12px;
+        line-height: 140%;
+        text-transform: uppercase;
+        color: #fff;
+        top: 0.5px;
+        position: relative;
+      }
+      .dark {
+        color: #424242;
+        font-family: "Rubik";
+        font-style: normal;
+        font-weight: 700;
+        font-size: 12px;
+        line-height: 140%;
+        text-transform: uppercase;
+        position: relative;
+        top: 0.5px;
+      }
+      img {
+        width: 15px;
+        height: 15px;
+        margin-right: 5px;
+      }
+    }
+  }
+}

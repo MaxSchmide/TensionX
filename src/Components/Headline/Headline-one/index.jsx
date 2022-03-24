@@ -1,8 +1,8 @@
 import React from "react";
 import "./style.scss";
-import search from "../Images/search-icon.png";
-import download from "../Images/Vector.png";
-export default function Headline() {
+import search from "../../Images/search-icon.png";
+import download from "../../Images/Vector.png";
+export default function Headline1(props) {
   return (
     <>
       <section className="headline">
@@ -11,6 +11,7 @@ export default function Headline() {
         </div>
         <div className="searchForm">
           <input
+            onChange={(e) => props.search(e.target.value)}
             id="search-box"
             type="search"
             placeholder="Enter Student Name, Parent or ID here"

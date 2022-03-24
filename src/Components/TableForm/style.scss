@@ -1,0 +1,284 @@
+.red {
+  color: #db4437;
+}
+.green {
+  color: #0f9d58;
+}
+.yellow {
+  color: #e2b534;
+}
+.blue {
+  color: #4285f4;
+}
+.table {
+  position: relative;
+  width: 1360px;
+  left: 40px;
+  top: 0px;
+  table {
+    border-collapse: collapse;
+  }
+  tr {
+    width: 1360px;
+    height: 48px;
+    &:nth-child(even) {
+      background-color: #f7f7f7;
+    }
+    &:hover {
+      background-color: #f2f2f2;
+    }
+  }
+
+  thead {
+    font-family: "Rubik";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 140%;
+    color: #777777;
+    opacity: 0.8;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0px 20px;
+    position: absolute;
+    width: 1356px;
+    left: 0px;
+    top: 18px;
+    tr {
+      padding-left: 7px;
+
+      display: flex;
+      flex-direction: row;
+      &:hover {
+        background-color: #ffffff;
+      }
+
+      td {
+        user-select: none;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0px;
+        img {
+          cursor: pointer;
+        }
+      }
+
+      .name {
+        position: static;
+        width: 300px;
+        top: 0px;
+        margin: 0 24px;
+      }
+      .id {
+        position: static;
+        width: 96px;
+      }
+      .class {
+        position: static;
+        width: 40px;
+        margin: 0 24px;
+      }
+      .score {
+        position: static;
+        width: 100px;
+      }
+      .speed {
+        position: static;
+        width: 112px;
+        margin: 0 24px;
+      }
+      .parents {
+        position: static;
+        width: 384px;
+      }
+    }
+  }
+  tbody {
+    left: 19px;
+    top: 68px;
+    height: 480px;
+    position: relative;
+    padding: 0px 20px;
+    font-family: "Rubik";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 140%;
+    filter: drop-shadow(0px 1px 4px rgba(91, 91, 91, 0.15));
+    border-radius: 4px;
+    tr {
+      box-shadow: 0px 1px 4px rgba(60, 52, 135, 0.15);
+      display: flex;
+      flex-direction: row;
+      padding-left: 8px;
+
+      td {
+        user-select: none;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0px;
+      }
+
+      .name {
+        position: static;
+        width: 300px;
+        top: 0px;
+        margin: 0 24px;
+        color: #828282;
+      }
+      .id {
+        color: #828282;
+
+        position: static;
+        width: 96px;
+      }
+      .class {
+        color: #828282;
+
+        position: static;
+        width: 40px;
+        margin: 0 24px;
+      }
+      .score {
+        position: static;
+        width: 100px;
+      }
+      .speed {
+        position: static;
+        width: 112px;
+        margin: 0 24px;
+      }
+      .parents {
+        color: #828282;
+
+        position: static;
+        width: 384px;
+      }
+      .actions {
+        cursor: pointer;
+        position: absolute;
+        right: 20px;
+        box-shadow: none;
+        filter: none;
+        .selected-buttons {
+          display: none;
+          position: relative;
+        }
+        .active {
+          display: block;
+        }
+
+        img {
+          position: relative;
+          top: 8px;
+          margin-left: 8px;
+        }
+      }
+    }
+  }
+  .archived-row {
+    user-select: none;
+    top: 70px;
+    position: relative;
+    width: 1360px;
+    height: 33px;
+    left: 20px;
+    font-family: "Rubik";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 140%;
+    /* identical to box height, or 17px */
+    &:hover {
+      background-color: #ffffff;
+    }
+  }
+
+  .active {
+    display: inline;
+  }
+  tfoot {
+    display: none;
+    left: 19px;
+    top: 47px;
+    height: 120px;
+    position: relative;
+    padding: 0px 20px;
+    font-family: "Rubik";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 140%;
+    filter: drop-shadow(0px 1px 4px #f2f2f2);
+    border-radius: 4px;
+    tr {
+      background-color: #f7f7f7;
+      padding-left: 8px;
+      color: #c0c0c0;
+      box-shadow: 0px 1px 4px rgba(60, 52, 135, 0.15);
+      display: flex;
+      flex-direction: row;
+
+      td {
+        user-select: none;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0px;
+      }
+      .actions {
+        opacity: 0.8;
+
+        cursor: pointer;
+        position: relative;
+        left: 112px;
+        img {
+          position: relative;
+          top: 8px;
+          margin-left: 8px;
+        }
+      }
+      .name {
+        position: static;
+        width: 300px;
+        top: 0px;
+        margin: 0 24px;
+      }
+      .id {
+        position: static;
+        width: 96px;
+      }
+      .class {
+        position: static;
+        width: 40px;
+        margin: 0 24px;
+      }
+      .score {
+        position: static;
+        width: 100px;
+      }
+      .speed {
+        position: static;
+        width: 112px;
+        margin: 0 24px;
+      }
+      .parents {
+        position: static;
+        width: 384px;
+      }
+    }
+  }
+}
+
+footer {
+  display: flex;
+  position: relative;
+  justify-content: center;
+  top: 68px;
+}
