@@ -45,11 +45,10 @@
     width: 384px;
   }
   .actions {
-    display: none;
-    width: 51px;
-    margin: 0 24px;
-  }
-  .active {
-    display: block;
+    position: absolute;
+    right: 7px;
+    top: 12px;
+    cursor: pointer;
+    user-select: none;
   }
 }
