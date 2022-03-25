@@ -8,17 +8,13 @@ import TableForm from "./TableForm";
 export default function Page() {
   const [searchTerm, setSearchTerm] = useState(" ");
   const [isSelectedCounter, setisSelectedCounter] = useState(0);
-  const [isArchivated, setIsArchivated] = useState(false);
   const countSelectedStudents = (num) => {
     setisSelectedCounter(num);
   };
   const searching = (terms) => {
     setSearchTerm(terms);
   };
-  const handleArchive = () => {
-    console.log("Main", isArchivated);
-    setIsArchivated(!isArchivated);
-  };
+
   return (
     <>
       <Header />
@@ -26,14 +22,10 @@ export default function Page() {
       {!isSelectedCounter ? (
         <Headline1 search={searching} />
       ) : (
-        <Headline2 archive={handleArchive} students={isSelectedCounter} />
+        <Headline2 students={isSelectedCounter} />
       )}
 
-      <TableForm
-        archive={isArchivated}
-        count={countSelectedStudents}
-        searchTerms={searchTerm}
-      />
+      <TableForm count={countSelectedStudents} searchTerms={searchTerm} />
     </>
   );
 }

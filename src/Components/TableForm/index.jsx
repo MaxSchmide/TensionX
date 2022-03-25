@@ -12,21 +12,33 @@ import Archive from "./Archive";
 import Details from "./Details";
 
 export default function TableForm(props) {
-  const [archiveMenu, setArchiveMenu] = useState(false);
   const [studentsBase, setStudentsBase] = useState([]);
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const [order, setOrder] = useState("ASC");
 
-  console.log("props", props.archive);
-  const archiveSelected = () => {
-    studentsBase.map((item) => ({
-      ...item,
-      isArchivated: item.isSelected ? props.archive : item.isArchivated,
-    }));
-  };
+  // const handleArchive = () => {
+  //   let archivated = studentsBase.map((item) =>
+  //     item.isSelected === true
+  //       ? {
+  //           ...item,
+  //           isSelected: !item.isSelected,
+  //           isArchivated: !item.isArchivated,
+  //         }
+  //       : item
+  //   );
+  //   setStudentsBase(archivated);
+  // };
 
   const selectAllStudents = () => {
+    // studentsBase.map((item) => {
+    //   if (item.score >= "90%") setStudentsBase({ ...item, color: "blue" });
+    //   if (item.score <= "90%") setStudentsBase({ ...item, color: "green" });
+    //   if (item.score <= "80%") setStudentsBase({ ...item, color: "yellow" });
+    //   if (item.score <= "50%") setStudentsBase({ ...item, color: "red" });
+    // });
+    console.log(studentsBase.map((item) => item.color));
+
     // const selectedState = studentsBase.map(
     //   (item) => (item.isSelected = !item.isSelected)
     // );
@@ -54,10 +66,9 @@ export default function TableForm(props) {
 
   const handleCheckboxOnChange = (position) => {
     const updatedStudentsBase = studentsBase.map((item, index) =>
-      index === position
-        ? { ...item, isSelected: !item.isSelected, isArchivated: props.archive }
-        : item
+      index === position ? { ...item, isSelected: !item.isSelected } : item
     );
+
     setStudentsBase(updatedStudentsBase);
     const total = updatedStudentsBase.reduce((sum, currentState) => {
       if (currentState.isSelected === true) {
@@ -66,10 +77,6 @@ export default function TableForm(props) {
       return sum;
     }, 0);
     props.count(total);
-  };
-
-  const handleArchivedSectionView = () => {
-    setArchiveMenu(!archiveMenu);
   };
 
   const sorting = (e) => {
@@ -114,9 +121,11 @@ export default function TableForm(props) {
             isSelected: false,
             isArchivated: false,
             showDetails: false,
+            color: "",
           }))
         );
       });
+    //
   }, []);
 
   return (
@@ -213,11 +222,9 @@ export default function TableForm(props) {
                 );
               })}
         </tbody>
-        <span onClick={handleArchivedSectionView} className="archived-row">
-          ARCHIVED
-        </span>
-        <tfoot className={`table-foot ${archiveMenu && "active"}`}>
-          {studentsBase.lenght && <Archive base={studentsBase} />}
+        <span className="archived-row">ARCHIVED</span>
+        <tfoot className={`table-foot `}>
+          {studentsBase.length && <Archive base={studentsBase} />}
         </tfoot>
       </table>
       <footer>

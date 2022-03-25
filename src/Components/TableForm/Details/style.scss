@@ -1,12 +1,30 @@
+.blue {
+  color: #4285f4;
+}
+.green {
+  color: #0f9d58;
+}
+.yellow {
+  color: #e2b534;
+}
+.red {
+  color: #db4437;
+}
+%display {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0px;
+}
 .details {
   width: 1360px;
-  height: 422px;
+  height: 320px;
   padding: 0 20px;
   background: #f2f2f2;
   .body {
     position: relative;
     width: 1240px;
-    height: 382px;
+    height: fit-content;
     left: 60px;
     top: 20px;
     .frame {
@@ -27,6 +45,288 @@
         width: 312px;
         height: 20px;
         justify-content: space-between;
+      }
+      .filter {
+        @extend %display;
+        width: 987px;
+        height: 33px;
+        background-color: #f2f2f2;
+        margin-top: 12px;
+
+        .select-concepts {
+          height: 32px;
+          width: 154px;
+          margin-right: 16px;
+        }
+        .select-score {
+          height: 32px;
+          width: 126px;
+          margin-right: 16px;
+        }
+        .select-speed {
+          height: 32px;
+          width: 125px;
+          margin-right: 16px;
+        }
+        input[type="date"] {
+          width: 201px;
+          height: 32px;
+          background: none;
+          border: none;
+          border-bottom: 1px solid #777777;
+        }
+        img {
+          cursor: pointer;
+          user-select: none;
+          position: relative;
+          left: 182px;
+        }
+      }
+    }
+    .divider {
+      position: relative;
+      width: 1102px;
+      height: 1px;
+      left: 0px;
+      top: 12px;
+      background: #a6192e;
+    }
+    .labels {
+      position: relative;
+      top: 25px;
+      width: 683px;
+      height: 34px;
+      font-family: "Rubik";
+      font-style: normal;
+      font-weight: 400;
+      font-size: 10px;
+      line-height: 140%;
+      .score-label {
+        @extend %display;
+        width: 683px;
+        height: 17px;
+        .one {
+          @extend %display;
+          margin: 0 24px;
+          width: 121px;
+          height: 17px;
+          .circle {
+            margin-right: 8px;
+            width: 12px;
+            height: 12px;
+            border-radius: 100%;
+            background-color: #4285f4;
+          }
+        }
+        .two {
+          @extend %display;
+          height: 17px;
+          width: 138px;
+          .circle {
+            margin-right: 8px;
+            width: 12px;
+            height: 12px;
+            border-radius: 100%;
+            background-color: #0f9d58;
+          }
+        }
+        .three {
+          @extend %display;
+          margin: 0 24px;
+          width: 136px;
+          height: 17px;
+          .circle {
+            margin-right: 8px;
+            width: 12px;
+            height: 12px;
+            border-radius: 100%;
+            background-color: #e2b534;
+          }
+        }
+        .four {
+          @extend %display;
+          width: 153px;
+          height: 17px;
+          .circle {
+            margin-right: 8px;
+            width: 12px;
+            height: 12px;
+            border-radius: 100%;
+            background-color: #db4437;
+          }
+        }
+      }
+      .speed-label {
+        @extend %display;
+        width: 455px;
+        height: 17px;
+        .one {
+          @extend %display;
+          margin: 0 24px;
+          width: 121px;
+          height: 17px;
+          .circle {
+            margin-right: 8px;
+            width: 12px;
+            height: 12px;
+            border-radius: 100%;
+            background-color: #4285f4;
+          }
+        }
+        .two {
+          @extend %display;
+          height: 17px;
+          width: 138px;
+          .circle {
+            margin-right: 8px;
+            width: 12px;
+            height: 12px;
+            border-radius: 100%;
+            background-color: #0f9d58;
+          }
+        }
+        .three {
+          @extend %display;
+          width: 153px;
+          height: 17px;
+          .circle {
+            margin-right: 8px;
+            width: 12px;
+            height: 12px;
+            border-radius: 100%;
+            background-color: #db4437;
+          }
+        }
+      }
+    }
+    .details-table {
+      position: relative;
+      top: 32px;
+      background: none;
+      width: 1102px;
+      .details-thead {
+        tr {
+          box-shadow: none;
+          font-family: "Rubik";
+          font-style: normal;
+          font-weight: 400;
+          font-size: 11px;
+          line-height: 140%;
+          color: #777777;
+          padding: 0;
+          width: 1102px;
+          height: 22px;
+          .index {
+            width: 22px;
+            height: 22px;
+          }
+          .label {
+            width: 300px;
+            margin: 0 12px;
+          }
+          .score {
+            width: 48px;
+          }
+          .speed {
+            width: 113px;
+            margin: 0 12px;
+          }
+          .total {
+            width: 68px;
+          }
+          .expspeed {
+            width: 68px;
+            margin: 0 12px;
+          }
+          .concept {
+            width: 152px;
+          }
+          .date {
+            width: 112px;
+            margin: 0 12px;
+          }
+          .absent {
+            width: 48px;
+          }
+        }
+      }
+      .details-tbody {
+        tr {
+          box-shadow: none;
+          width: 1078px;
+          height: 32px;
+          padding: 0;
+          font-size: 12px;
+          .index {
+            width: 22px;
+            height: 22px;
+          }
+          .label {
+            width: 300px;
+            margin: 0 12px;
+          }
+          .score {
+            width: 48px;
+          }
+          .speed {
+            width: 113px;
+            margin: 0 12px;
+          }
+          .total {
+            width: 68px;
+          }
+          .expspeed {
+            width: 68px;
+            margin: 0 12px;
+          }
+          .concept {
+            width: 152px;
+          }
+          .date {
+            width: 112px;
+            margin: 0 12px;
+          }
+          .absent {
+            width: 48px;
+          }
+        }
+
+        tr:nth-child(even) {
+          background-color: #f2f2f2;
+        }
+        .table-divider {
+          margin: 6px 0;
+          height: 1px;
+          width: 1078px;
+          background: #a6192e;
+        }
+        .details-footer {
+          font-family: "Rubik";
+          font-style: normal;
+          font-weight: 700;
+          font-size: 14px;
+
+          width: 609px;
+          height: 48px;
+          .avg {
+            position: relative;
+            left: 34px;
+            width: 300px;
+            height: 28px;
+          }
+          .val {
+            position: relative;
+            left: 40px;
+            width: 78px;
+            height: 30px;
+          }
+          .res {
+            position: relative;
+            left: 24px;
+            width: 113px;
+            height: 48px;
+          }
+        }
       }
     }
   }
