@@ -17,7 +17,9 @@
   padding: 0px 20px;
   position: relative;
   width: 1360px;
+  height: 48px;
   top: 17px;
+
   .name {
     @extend %td;
     margin: 0 24px;
@@ -57,7 +59,9 @@
       cursor: pointer;
       user-select: none;
     }
-    .action-buttons{
+    .action-buttons {
+      cursor: pointer;
+      user-select: none;
       display: none;
     }
     .active {

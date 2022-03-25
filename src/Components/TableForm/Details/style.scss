@@ -294,6 +294,10 @@
         tr:nth-child(even) {
           background-color: #f2f2f2;
         }
+        tr:hover {
+          background-color: #f7e5e5;
+          border: 1px solid #a6192e;
+        }
         .table-divider {
           margin: 6px 0;
           height: 1px;

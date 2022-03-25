@@ -2,14 +2,14 @@ import React from "react";
 import unarchive from "../../Images/unarchive.png";
 import vector from "../../Images/user-vector.png";
 import "./style.scss";
-export default function Archive({ base }) {
+export default function Archive({ archive, base, select }) {
   return base.map((item, index) => {
     return (
       <>
         {item.isArchivated && (
           <tr key={index} className="archive">
             <td>
-              <input type="checkbox" />
+              <input type="checkbox" onChange={() => select(index)} />
             </td>
             <td className="name">{item.name}</td>
             <td className="id">{item.id}</td>
@@ -19,8 +19,9 @@ export default function Archive({ base }) {
             <td className="parents">{item.parents.join(", ")}</td>
             <td className="actions">
               <div
+                onClick={archive}
                 className={`action-buttons ${
-                  item[index].isSelected && "active"
+                  base[index].isSelected && "active"
                 }`}
               >
                 <img src={unarchive} alt="" />
