@@ -31,15 +31,6 @@ export default function TableForm(props) {
   // };
 
   const selectAllStudents = () => {
-    // const selectedState = studentsBase.map(
-    //   (item) => (item.isSelected = !item.isSelected)
-    // );
-    // console.log(selectedState);
-    // const updatedStudentsBase = studentsBase.map((item, index) => ({
-    //   ...item,
-    //   isSelected: item.isSelected ? item.isSelected : selectedState[index],
-    // }));
-    // setStudentsBase(updatedStudentsBase);
     // const total = selectAll.reduce((sum, currentState) => {
     //   if (currentState.isSelected === true) {
     //     return sum + 1;
