@@ -16,7 +16,7 @@ export default function Headline2(props) {
           <img src={download} alt="" />
           <h1>EXPORT CSV </h1>
         </div>
-        <div className="box">
+        <div className="box" onClick={props.archive}>
           <img src={archive} alt="" />
           <h2 className="dark">ARCHIVE SELECTED </h2>
         </div>

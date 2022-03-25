@@ -12,44 +12,55 @@ import Archive from "./Archive";
 import Details from "./Details";
 
 export default function TableForm(props) {
-  const [archivedBase, setArchivedBase] = useState([]);
   const [archiveMenu, setArchiveMenu] = useState(false);
-  const [isLoaded, setIsLoaded] = useState(false);
   const [studentsBase, setStudentsBase] = useState([]);
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const [order, setOrder] = useState("ASC");
-  const [checkedState, setCheckedState] = useState();
-  const [isAllChecked, setIsAllChecked] = useState();
-  const [selectedState, setSelectedState] = useState();
+
+  console.log("props", props.archive);
+  const archiveSelected = () => {
+    studentsBase.map((item) => ({
+      ...item,
+      isArchivated: item.isSelected ? props.archive : item.isArchivated,
+    }));
+  };
 
   const selectAllStudents = () => {
-    let toggle = isAllChecked.map((item) => (item = !item));
-
-    const total = toggle.reduce((sum, currentState) => {
-      if (currentState === true) {
-        return sum + 1;
-      }
-      return sum;
-    }, 0);
-    setIsAllChecked(toggle);
-    setCheckedState(toggle);
-    props.count(total);
+    // const selectedState = studentsBase.map(
+    //   (item) => (item.isSelected = !item.isSelected)
+    // );
+    // console.log(selectedState);
+    // const updatedStudentsBase = studentsBase.map((item, index) => ({
+    //   ...item,
+    //   isSelected: item.isSelected ? item.isSelected : selectedState[index],
+    // }));
+    // setStudentsBase(updatedStudentsBase);
+    // const total = selectAll.reduce((sum, currentState) => {
+    //   if (currentState.isSelected === true) {
+    //     return sum + 1;
+    //   }
+    //   return sum;
+    // }, 0);
+    // props.count(total);
   };
+
   const handleDetailsView = (position) => {
-    const updatedSelectedState = selectedState.map((item, index) =>
-      index === position ? !item : item
+    const updatedStudentsBase = studentsBase.map((item, index) =>
+      index === position ? { ...item, showDetails: !item.showDetails } : item
     );
-    setSelectedState(updatedSelectedState);
+    setStudentsBase(updatedStudentsBase);
   };
-  const handleCheckboxOnChange = (position) => {
-    const updatedCheckedState = checkedState.map((item, index) =>
-      index === position ? !item : item
-    );
-    setCheckedState(updatedCheckedState);
 
-    const total = updatedCheckedState.reduce((sum, currentState) => {
-      if (currentState === true) {
+  const handleCheckboxOnChange = (position) => {
+    const updatedStudentsBase = studentsBase.map((item, index) =>
+      index === position
+        ? { ...item, isSelected: !item.isSelected, isArchivated: props.archive }
+        : item
+    );
+    setStudentsBase(updatedStudentsBase);
+    const total = updatedStudentsBase.reduce((sum, currentState) => {
+      if (currentState.isSelected === true) {
         return sum + 1;
       }
       return sum;
@@ -92,20 +103,22 @@ export default function TableForm(props) {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
   };
+
   useEffect(() => {
     fetch("https://test-task-j.herokuapp.com/data?page=1&size=20")
       .then((response) => response.json())
       .then((result) => {
-        setStudentsBase(result.data);
-        setArchivedBase(result.data.slice(0, 2));
-        setIsLoaded(true);
+        setStudentsBase(
+          result.data.map((item) => ({
+            ...item,
+            isSelected: false,
+            isArchivated: false,
+            showDetails: false,
+          }))
+        );
       });
   }, []);
-  useEffect(() => {
-    setCheckedState(new Array(studentsBase.length).fill(false));
-    setSelectedState(new Array(studentsBase.length).fill(false));
-    setIsAllChecked(new Array(studentsBase.length).fill(false));
-  }, [studentsBase]);
+
   return (
     <section className="tableForm">
       <table className="table">
@@ -132,11 +145,11 @@ export default function TableForm(props) {
               <img src={sort} alt="" name="speed" onClick={sorting} />
             </td>
             <td className="parents">Parents</td>
-            <td className={`actions ${checkedState && `active`}`}>Actions</td>
+            <td className={`actions active`}>Actions</td>
           </tr>
         </thead>
         <tbody className="table-body">
-          {isLoaded &&
+          {studentsBase.length &&
             studentsBase
               .filter((item) => {
                 if (props.terms === "") {
@@ -161,39 +174,41 @@ export default function TableForm(props) {
               .map((item, index) => {
                 return (
                   <>
-                    <tr key={index}>
-                      <td>
-                        <input
-                          type="checkbox"
-                          onChange={() => handleCheckboxOnChange(index)}
-                          checked={checkedState[index]}
-                        />
-                      </td>
-                      <td className="name">{item.name}</td>
-                      <td className="id">{item.id}</td>
-                      <td className="class">{item.class}</td>
-                      <td className={`score  `}>{item.score}</td>
-                      <td className={`speed `}>{item.speed}</td>
-                      <td className="parents">{item.parents.join(", ")}</td>
-                      <td className="actions">
-                        <div
-                          className={`action-buttons ${
-                            checkedState[index] && `active`
-                          }`}
-                        >
-                          <img src={edit} alt="left" srcset="" />
-                          <img src={promote} alt="middle" srcset="" />
-                        </div>
-                        <div onClick={() => handleDetailsView(index)}>
-                          {selectedState[index] ? (
-                            <img src={arrow_up} alt="vector" />
-                          ) : (
-                            <img src={arrow_down} alt="vector" />
-                          )}
-                        </div>
-                      </td>
-                    </tr>
-                    {selectedState[index] && <Details data={item} />}
+                    {!item.isArchivated && (
+                      <tr key={index}>
+                        <td>
+                          <input
+                            type="checkbox"
+                            onChange={() => handleCheckboxOnChange(index)}
+                            checked={studentsBase[index].isSelected}
+                          />
+                        </td>
+                        <td className="name">{item.name}</td>
+                        <td className="id">{item.id}</td>
+                        <td className="class">{item.class}</td>
+                        <td className={`score  `}>{item.score}</td>
+                        <td className={`speed `}>{item.speed}</td>
+                        <td className="parents">{item.parents.join(", ")}</td>
+                        <td className="actions">
+                          <div
+                            className={`action-buttons ${
+                              studentsBase[index].isSelected && `active`
+                            }`}
+                          >
+                            <img src={edit} alt="left" />
+                            <img src={promote} alt="middle" />
+                          </div>
+                          <div onClick={() => handleDetailsView(index)}>
+                            {studentsBase[index].showDetails ? (
+                              <img src={arrow_up} alt="vector" />
+                            ) : (
+                              <img src={arrow_down} alt="vector" />
+                            )}
+                          </div>
+                        </td>
+                      </tr>
+                    )}
+                    {studentsBase[index].showDetails && <Details data={item} />}
                   </>
                 );
               })}
@@ -202,7 +217,7 @@ export default function TableForm(props) {
           ARCHIVED
         </span>
         <tfoot className={`table-foot ${archiveMenu && "active"}`}>
-          {isLoaded && <Archive base={archivedBase} />}
+          {studentsBase.lenght && <Archive base={studentsBase} />}
         </tfoot>
       </table>
       <footer>
