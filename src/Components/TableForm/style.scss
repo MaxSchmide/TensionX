@@ -6,6 +6,18 @@
   padding: 0px;
   height: 20px;
 }
+.red {
+  color: #db4437;
+}
+.yellow {
+  color: #e2b534;
+}
+.green {
+  color: #0f9d58;
+}
+.blue {
+  color: #4285f4;
+}
 
 .tableForm {
   position: relative;
@@ -164,7 +176,6 @@
     .table-foot {
       display: table-footer-group;
     }
-    
   }
   footer {
     display: flex;

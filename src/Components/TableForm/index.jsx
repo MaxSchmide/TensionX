@@ -31,14 +31,6 @@ export default function TableForm(props) {
   // };
 
   const selectAllStudents = () => {
-    // studentsBase.map((item) => {
-    //   if (item.score >= "90%") setStudentsBase({ ...item, color: "blue" });
-    //   if (item.score <= "90%") setStudentsBase({ ...item, color: "green" });
-    //   if (item.score <= "80%") setStudentsBase({ ...item, color: "yellow" });
-    //   if (item.score <= "50%") setStudentsBase({ ...item, color: "red" });
-    // });
-    console.log(studentsBase.map((item) => item.color));
-
     // const selectedState = studentsBase.map(
     //   (item) => (item.isSelected = !item.isSelected)
     // );
@@ -121,11 +113,19 @@ export default function TableForm(props) {
             isSelected: false,
             isArchivated: false,
             showDetails: false,
-            color: "",
+            color:
+              parseInt(item.score) < 50
+                ? "red"
+                : parseInt(item.score) < 80
+                ? "yellow"
+                : parseInt(item.score) < 90
+                ? "green"
+                : parseInt(item.score) >= 90
+                ? "blue"
+                : "",
           }))
         );
       });
-    //
   }, []);
 
   return (
@@ -195,7 +195,7 @@ export default function TableForm(props) {
                         <td className="name">{item.name}</td>
                         <td className="id">{item.id}</td>
                         <td className="class">{item.class}</td>
-                        <td className={`score  `}>{item.score}</td>
+                        <td className={`score ${item.color} `}>{item.score}</td>
                         <td className={`speed `}>{item.speed}</td>
                         <td className="parents">{item.parents.join(", ")}</td>
                         <td className="actions">

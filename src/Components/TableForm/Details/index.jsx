@@ -89,7 +89,7 @@ export default function Details({ data }) {
                     <td className="concept">{item.concept}</td>
                     <td className="date">{item.date}</td>
                     <td className="absent">
-                      <input type="checkbox" checked={item.abcent} />
+                      <input type="checkbox" />
                     </td>
                   </tr>
                 );
