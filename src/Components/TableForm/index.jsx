@@ -6,12 +6,13 @@ import arrow_down from "../Images/user-vector.png";
 import arrow_up from "../Images/arrow_up.png";
 import edit from "../Images/edit-icon.png";
 import promote from "../Images/promote-icon.png";
-import "./style.scss";
 import TablePagination from "@mui/material/TablePagination";
+import dataBase from "../../TensionX.json";
 import Archive from "./Archive";
 import Details from "./Details";
 import Headline1 from "./Headline/Headline-one";
 import Headline2 from "./Headline/Headline-two";
+import "./style.scss";
 
 export default function TableForm() {
   const [studentsBase, setStudentsBase] = useState([]);
@@ -48,16 +49,6 @@ export default function TableForm() {
       return sum;
     }, 0);
     countSelectedStudents(total);
-  };
-
-  const selectAllStudents = () => {
-    // const total = studentsBase.reduce((sum, currentState) => {
-    //   if (currentState.isSelected === true) {
-    //     return sum + 1;
-    //   }
-    //   return sum;
-    // }, 0);
-    // countSelectedStudents(total);
   };
 
   const handleDetailsView = (position) => {
@@ -115,35 +106,31 @@ export default function TableForm() {
   };
 
   useEffect(() => {
-    fetch("https://test-task-j.herokuapp.com/data?page=1&size=20")
-      .then((response) => response.json())
-      .then((result) => {
-        setStudentsBase(
-          result.data.map((item) => ({
-            ...item,
-            isSelected: false,
-            isArchivated: false,
-            showDetails: false,
-            scoreColor:
-              parseInt(item.score) < 50
-                ? "red"
-                : parseInt(item.score) < 80
-                ? "yellow"
-                : parseInt(item.score) < 90
-                ? "green"
-                : parseInt(item.score) >= 90
-                ? "blue"
-                : "",
-            speedColor: item.speed.includes("w")
-              ? "red"
-              : item.speed.includes("s")
-              ? "green"
-              : item.speed.includes("v")
-              ? "blue"
-              : "",
-          }))
-        );
-      });
+    setStudentsBase(
+      dataBase.data.map((item) => ({
+        ...item,
+        isSelected: false,
+        isArchivated: false,
+        showDetails: false,
+        scoreColor:
+          parseInt(item.score) < 50
+            ? "red"
+            : parseInt(item.score) < 80
+            ? "yellow"
+            : parseInt(item.score) < 90
+            ? "green"
+            : parseInt(item.score) >= 90
+            ? "blue"
+            : "",
+        speedColor: item.speed.includes("w")
+          ? "red"
+          : item.speed.includes("s")
+          ? "green"
+          : item.speed.includes("v")
+          ? "blue"
+          : "",
+      }))
+    );
   }, []);
 
   return (
@@ -162,7 +149,7 @@ export default function TableForm() {
           <thead className="table-head">
             <tr>
               <td>
-                <input type="checkbox" onClick={selectAllStudents} />
+                <input type="checkbox" />
               </td>
               <td className="name">
                 <p>Name</p>
